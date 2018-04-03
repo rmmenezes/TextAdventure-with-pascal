@@ -1,6 +1,8 @@
 program ArquivoPas;
 
-
+var
+	arq: text;
+	linha: string;
 begin
         Assign(arq,'size.txt');
         reset(arq);

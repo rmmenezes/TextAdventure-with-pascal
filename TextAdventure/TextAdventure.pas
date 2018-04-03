@@ -205,9 +205,25 @@ var c1: Cena;
 		getItens := itens;
 	end;
 
-begin
-        clrscr();
-       	writeln('TextAdventure');
+var
+        title: text;
+        linha: string;
 
+
+begin
+        clrscr(); 					//Limpa o console
+
+	Assign(title,'./Files/Title.txt');
+        reset(title);
+        while not EOF(title) do
+        begin
+            readln(title, linha);
+            writeln(linha);
+            Delay(200);
+        end;
+        close(title);
+
+        Delay(1000);
+        clrscr(); 					//Limpa o console
 
 end.
