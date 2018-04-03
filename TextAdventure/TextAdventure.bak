@@ -2,6 +2,7 @@
 {$m+}		   // directive to be used for using constructor
 
 Program TextAdventure(output);
+uses CRT;
 
 //OBJETO CENA
 type Cena = class
@@ -55,24 +56,26 @@ end;
 //OBJETO JOGO
 type Jogo = class
     private
-        cenas: array[] of Cena;
         cena_atual: integer;
-    
+
     public
-        procedure setCenas(scenes array[] of cena);
+        cenas: array[0..10] of Cena;
         procedure setCena_atual(scene: integer);
         function getCena_atual() : integer;
 end;
 
+//OBJETO IVENTARIO
+type Inventario = class
+    public
+        itens: array[] of Objeto;
+end;
+
+
 //METODOS DO OBJETO JOGO
 var jg: Jogo;
 	//SET
-	procedure Jogo.setCenas(scenes array[] of cena);
+        procedure Jogo.setCena_atual(scene: integer);
 	begin
-		cenas := scenes;
-	end;
-    procedure Jogo.setCena_atual(scene: integer);
-	begin	
 		cena_atual := scene;
 	end;
 
@@ -80,7 +83,7 @@ var jg: Jogo;
     function Jogo.getCena_atual() : integer;
 	begin
 		getCena_atual := cena_atual;
-	end;    
+	end;
 
 
 
@@ -203,13 +206,8 @@ var c1: Cena;
 	end;
 
 begin
-	writeln('');
-	writeln('');
-	writeln('');
-	writeln('');
-	writeln('');
-	writeln('');
-	writeln('TextAdventure');
+        clrscr();
+       	writeln('TextAdventure');
 
-   
+
 end.

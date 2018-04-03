@@ -11,7 +11,7 @@ begin
    writeln('PassouAqui', vet[1]);
 end;
 
-begin
+begin  
    avg( vetor );
-
+  
 end.
