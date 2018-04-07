@@ -3,138 +3,86 @@
 
 Program TextAdventure(output);
 uses CRT;
-//OBJETO OBJETO
-type Objeto = class
-    public
+//STRUCT OBJETO
+type Objeto = record
         id, tipo, cena_alvo: integer;
         nome, descricao, result_posit, result_negat, comand_correct: string;
         resolvido, obtido: boolean;
-
-        constructor create();
 end;
-        constructor Objeto.create();
-        begin
-                id := -1;
-                tipo := -1;
-                cena_alvo := -1;
-                nome := ' ';
-                descricao := ' ';
-                result_posit := ' ';
-                result_negat := ' ';
-                comand_correct := ' ';
-                resolvido := false;
-                obtido := false;
-        end;
 
-//OBJETO CENA
-type Cena = class
-    public
+
+//STRUCT CENA
+type Cena = record
         id: integer;
         titulo, descricao: string;
         itens: array[0..10] of Objeto;
-    private
-        constructor create();
 end;
-
-        constructor Cena.create();
-        var
-                i : integer;
-        begin
-                id := 0;
-                titulo := ' ';
-                descricao := ' ';
-                for i := 0 to 10 do
-                begin
-                        itens[i] := Objeto.create();
-                end;
-        end;
-
 
 
 //OBJETO JOGO
-type Jogo = class
-    public
+type Jogo = record
         cena_atual: integer;
         cenas: array[0..10] of Cena;
-        constructor create();
 end;
 
-        constructor Jogo.create();
-        var
-                i : integer;
-        begin
-                cena_atual := 0;
-                for i := 0 to 10 do
-                begin
-                        cenas[i] := Cena.create();
-                end;
-        end;
 
 //OBJETO IVENTARIO
-type Inventario = class
-    public
+type Inventario = record
         itens: array[0..10] of Objeto;
-        constructor create();
-
 end;
 
-        constructor Inventario.create();
-        var
-                i : integer;
-        begin
-                for i := 0 to 10 do
-                begin
-                    itens[i] := Objeto.create();
-                end;
-        end;
 
-
-function ReadScene() : Cena;
-	var
-                cs : Cena;
-		linha : string;
-		index : integer;
-                cena : text;
-
-        begin
-
-        Assign(cena,'./Files/Cenas.txt');
-        reset(cena);
-
-       while not EOF(cena) do
-       begin
-            index := 0;
-
-            readln(cena, linha);        //le o id
-            cs.id := 0;
-
-            readln(cena, linha);        //le o titulo
-            cs.titulo := linha;
-
-            readln(cena, linha);        //le a descricao
-            cs.descricao := linha;
-
-       end;
-       close(cena);
-
-       ReadScene := cs;
-end;
-
-function NewGame() : Jogo;
+function criaCena(ident : integer; tit, desc : string) : Cena;
 var
-        jg : Jogo;
+        scene : Cena;
+begin
+        scene.id := ident;
+        scene.titulo := tit;
+        scene.descricao := desc;
+
+        CriaCena := scene;
+end;
+
+function criaJogo () : Jogo;
+var
+        i, id : integer;
+	cena : text;
+	titulo, descricao : string;
+	game : Jogo;
 
 begin
-        jg.create()
+	Assign(cena,'./Files/Cenas.txt');
+        reset(cena);
+
+    	i := 0;
+	while not EOF(cena) do
+    	begin
+		readln(cena, id);
+		readln(cena, titulo);
+		readln(cena, descricao);
+
+		game.cenas[i] := criaCena(id, titulo, descricao);
+
+		i := i + 1;
+    	end;
+	close(cena);
+
+	criaJogo := game;
+end;
+
+procedure printaCena (scene : Cena);
+begin
+        writeln(scene.titulo);
+        writeln();
+        writeln(scene.descricao);
 end;
 
 
 
 var
-        title: text;
+        title : text;
         linha: string;
         game : Jogo;
-
 begin
     clrscr(); 					//Limpa o console
 
@@ -148,12 +96,14 @@ begin
         end;
         close(title);
 
+        clrscr();                               //Limpa o console
+        Delay(1000);
 
-
-        game.cenas[0] := ReadScene();
+        game := criaJogo();
+        printaCena(game.cenas[0]);
+        readln(linha);				//so para congelar o texto
 
         Delay(1000);
-       // clrscr(); 					//Limpa o console
 
 end.
 
