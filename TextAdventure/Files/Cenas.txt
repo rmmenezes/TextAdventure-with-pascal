@@ -1,12 +1,18 @@
 0
 O quarto
 O quarto tem duas cadeira e uma mesa de madeira com um vaso em cima de flor preta com vermelho
+2	
+0
+0
+cadeira
+Voce pode usar a acadeira para subir e olhar ao redor
+Muito bem agora voce esta em cima da cadeira e consegue ver um gato
+Infelismente nao é possivel fazer isso tente outro comando
+subir
 1
-Eles Virao
-Quando menos se esperava estavam la, a espreita, procurando por algo maior
-2
-Quando a vida cobra
-Seria isso sobre uma cobra ou sobre cobranca
-3
-Nao renunciarei
-Voce pensa que me submiterei a tal atos e acoes impensaveis
+0
+flor
+Voce pode comer a flor e ganhar super poderes de pabloVitar
+Muito bomm lokaa agora partiu paradaaaa migaaa
+Infelismente nao é possivel fazer isso tente outro comando
+comer

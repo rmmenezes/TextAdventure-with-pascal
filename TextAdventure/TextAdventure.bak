@@ -3,6 +3,7 @@
 
 Program TextAdventure(output);
 uses CRT;
+
 //STRUCT OBJETO
 type Objeto = record
         id, tipo, cena_alvo: integer;
@@ -19,14 +20,14 @@ type Cena = record
 end;
 
 
-//OBJETO JOGO
+//STRUCT JOGO
 type Jogo = record
         cena_atual: integer;
         cenas: array[0..10] of Cena;
 end;
 
 
-//OBJETO IVENTARIO
+//STRUCT IVENTARIO
 type Inventario = record
         itens: array[0..10] of Objeto;
 end;
@@ -45,10 +46,15 @@ end;
 
 function criaJogo () : Jogo;
 var
-        i, id : integer;
+        i, j, id : integer;
 	cena : text;
 	titulo, descricao : string;
 	game : Jogo;
+
+        id, tipo, cena_alvo: integer;
+        nome, descricao, result_posit, result_negat, comand_correct: string;
+        resolvido, obtido: boolean;
+
 
 begin
 	Assign(cena,'./Files/Cenas.txt');
@@ -57,12 +63,25 @@ begin
     	i := 0;
 	while not EOF(cena) do
     	begin
+                //le Atributos da Cena
 		readln(cena, id);
 		readln(cena, titulo);
 		readln(cena, descricao);
 
+                //le Atributos dos Objetos da Cena
+                readln(cena, id);
+                readln(cena, tipo);
+                readln(cena, nome);
+                readln(cena, descricao);
+                readln(cena, result_posit);
+                readln(cena, result_negat);
+                readln(cena, comand_correct);
+                readln(cena, resolvido);
+                readln(cena, obtido);
+
 		game.cenas[i] := criaCena(id, titulo, descricao);
 
+                game.cenas[i].itens[j] := criaObjeto(id, tipo, nome, descricao, result_posit, result_negat, comand_correct, resolvido, obtido);
 		i := i + 1;
     	end;
 	close(cena);
@@ -97,12 +116,13 @@ begin
         close(title);
 
         clrscr();                               //Limpa o console
+        Delay(1000);
 
         game := criaJogo();
         printaCena(game.cenas[0]);
-        readln(linha);
+        readln(linha);				//so para congelar o texto
 
-        Delay(1000); 				
+        Delay(1000);
 
 end.
 
