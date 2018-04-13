@@ -83,12 +83,12 @@ begin
 		readln(cena, id_cena);
 		readln(cena, titulo);
 		readln(cena, descricao_cena);
-        readln(cena, qtd_objetos);
+        	readln(cena, qtd_objetos);
 
         game.cenas[i] := criaCena(id_cena, titulo, descricao_cena, qtd_objetos);
 
 
-                for j:=0 to qtd_objetos-1 do
+                for j:=0 to game.cenas[i].qtd_objetos-1 do
                 begin
                         //le Atributos dos Objetos da Cena
                         readln(cena, id_objeto);
@@ -148,7 +148,7 @@ begin
         Delay(1000);
 
         game := criaJogo();
-        printaCena(game.cenas[0]);
+        printaCena(game.cenas[1]);
         readln(linha);				//so para congelar o texto
 
         Delay(1000);
