@@ -2,7 +2,7 @@
 {$m+}		   // directive to be used for using constructor
 
 Program TextAdventure(output);
-uses CRT;
+uses CRT, sysutils;
 
 //STRUCT OBJETO
 type Objeto = record
@@ -63,49 +63,55 @@ end;
 
 function criaJogo () : Jogo;
 var
-        i, j, id_cena, qtd_objetos : integer;
-	    cena : text;
-	    titulo, descricao_cena : string;
-	    game : Jogo;
-
-        id_objeto, tipo, cena_alvo: integer;
-        nome, descricao_objeto, result_posit, result_negat, comand_correct: string;
+    arq: text;
+    linha, titulo, descricao_cena, descricao_objeto, nome, comando_correto, resultado_positivo, resultado_negativo : string;
+    i, j, id_objeto, qtd_objetos, tipo, cena_alvo : integer;
+    id_cena : integer;
+    game : Jogo;
 
 
 begin
-	Assign(cena,'./Files/Cenas.txt');
-        reset(cena);
-
-    	i := 0;
-	while not EOF(cena) do
-    	begin
-                //le Atributos da Cena
-		readln(cena, id_cena);
-		readln(cena, titulo);
-		readln(cena, descricao_cena);
-        	readln(cena, qtd_objetos);
+        Assign(arq,'./Files/Cenas.txt');
+        reset(arq);
+        i := 0;
+        while not EOF(arq) do
+         begin
+        readln(arq, linha);  //Linha magica q nao deixa o prog voar heheeh S2
+        readln(arq, id_cena);
+        writeln(id_cena);
+        readln(arq, titulo);
+        writeln(titulo);
+        readln(arq, descricao_cena);
+        writeln(descricao_cena);
+        readln(arq, qtd_objetos);
+        writeln(qtd_objetos);
 
         game.cenas[i] := criaCena(id_cena, titulo, descricao_cena, qtd_objetos);
 
 
-                for j:=0 to game.cenas[i].qtd_objetos-1 do
-                begin
-                        //le Atributos dos Objetos da Cena
-                        readln(cena, id_objeto);
-                        readln(cena, tipo);
-                        readln(cena, nome);
-                        readln(cena, descricao_objeto);
-                        readln(cena, result_posit);
-                        readln(cena, result_negat);
-                        readln(cena, comand_correct);
-                        cena_alvo := i;
-                        game.cenas[i].itens[j] := criaObjeto(id_objeto, tipo, nome, descricao_objeto, result_posit, result_negat, comand_correct, cena_alvo);
-                end;
-		i := i + 1;
-    	end;
-	close(cena);
-
-	criaJogo := game;
+   for j:=0 to qtd_objetos - 1 do
+    begin
+        readln(arq, id_objeto);
+        writeln(id_objeto);
+        readln(arq, tipo);
+        writeln(tipo);
+        readln(arq, nome);
+        writeln(nome);
+        readln(arq, descricao_objeto);
+        writeln(descricao_objeto);
+        readln(arq, resultado_positivo);
+        writeln(resultado_positivo);
+        readln(arq, resultado_negativo);
+        writeln(resultado_negativo);
+        readln(arq, comando_correto);
+        writeln(comando_correto);
+        cena_alvo := i;
+        game.cenas[i].itens[j] := criaObjeto(id_objeto, tipo, nome, descricao_objeto, resultado_positivo, resultado_negativo, comando_correto, cena_alvo);
+    end;
+    i := i + 1;
+    end;
+	close(arq);
+    criaJogo := game;
 end;
 
 procedure printaCena (scene : Cena);
@@ -124,23 +130,21 @@ begin
         end;
 end;
 
-
-
-
 var
-        title : text;
-        linha: string;
         game : Jogo;
-begin
-    clrscr(); 					//Limpa o console
+        title : text;
+        linha : string;
 
-	Assign(title,'./Files/Title.txt');
+begin
+clrscr();                                       //Limpa o console
+
+        Assign(title,'./Files/Title.txt');
         reset(title);
         while not EOF(title) do
         begin
-            readln(title, linha);
-            writeln(linha);
-            Delay(200);
+          readln(title, linha);
+          writeln(linha);
+          Delay(200);
         end;
         close(title);
 
@@ -148,15 +152,10 @@ begin
         Delay(1000);
 
         game := criaJogo();
-        printaCena(game.cenas[1]);
-        readln(linha);				//so para congelar o texto
 
-        Delay(1000);
+        printaCena(game.cenas[1]);
+        //readln(linha);				//so para congelar o texto
+
+        //Delay(1000);
 
 end.
-
-
-
-
-
-
