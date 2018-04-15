@@ -1,0 +1,70 @@
+﻿
+0
+Por do Sol
+Apos algumas horas caminhando, perdido em seus distantes pensamentos, voce percebe que o sol esta se pondo Percebe tambem que se encontra proximo a uma varanda Na sua direita ha a PORTA  de um casebre  esquerda uma BICICLETA e atras a RUA por onde acaba de chegar Como ja fazem horas voltar para casa nao eh uma boa opcao
+3
+0
+0
+porta
+A porta esta entreaberta
+Voce esta abrindo a porta
+Comando invalido para esse objeto. Tente outras interacoes
+use porta
+1
+0
+BICICLETA
+A bicicleta esta jogada no chao e nao parece em condicoes de uso.
+Você pegou a bicicleta.
+Comando invalido para esse objeto. Tente outras interacoes.
+get bicicleta
+2
+1
+rua
+A rua o leva para casa. Mas sera que o leva em tempo, interrogacao
+Voce esta pedalando na direçao de sua casa, faltam poucos metros para a seguranca do seu lar. Derrepente, surge um ser muito veloz e voa em sua direcao. Neste momento, sua alma ja nao lhe pertence mais e você eh so mais um escravo nesse mundo das trevas.
+Comando invalido para esse objeto. Tente outras interacoes.
+use bicicleta with rua
+
+1
+O Casebre
+A porta range muito, morcegos voam para o lado de fora, você poderia se assustar mas nao tem tempo pra isso. O lado interno do casebre nao eh tao feio quanto parecia la de fora. No comodo em que acabou de entrar ha pouca luz. Ha um INTERRUPTOR logo ao lado da PORTA que acabou de adentrar.
+2
+0
+0
+interruptor
+O interruptor esta em perfeitas condicoes.
+Voce acendeu a luz.
+Comando invalido para esse objeto. Tente outras interacoes.
+use interruptor
+1
+1
+porta
+A porta ja se encontra fechada.
+A porta esta emperrada, agora eh impossivel voltar.
+Comando invalido para esse objeto. Tente outras interacoes.
+use porta
+
+2
+Artefatos I
+Agora com o ambiente completamente iluminado, você consegue perceber alguns artefatos dispostos pelo comodo.  Logo ao lado do interruptor que acabou de acionar, ha um CALENDARIO velho pendurado apenas por uma das pontas na parede, no chao ha uma boa quantidade de MADEIRA que foram visivelmente arrancadas do piso, tambem eh possivel ver uma JANELA de tamanho medio na parede oposta, e na parede a direita ha uma porta, essa bem mais conservada que a anterior.
+3
+0
+0
+calendario
+O calendario eh muito antigo, data 2031.
+O calendario agora está no seu inventario.
+Comando invalido para esse objeto. Tente outras interacoes.
+get calendario
+1
+0
+madeira
+As bordas estao podres mas eh possivel fazer algum tipo de reuso.
+A madeira agora está no seu inventario.
+Comando invalido para esse objeto. Tente outras interacoes.
+get madeira
+2
+1
+janela
+A janela esta aberta. Perigoso, nao, interrogacao.
+Foi por pouco, mas voce fechou a janela com a madeira disponivel. Este comodo está selado dos perigos esteriores.
+use madeira with janela
