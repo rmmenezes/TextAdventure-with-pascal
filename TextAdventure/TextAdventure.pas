@@ -191,6 +191,17 @@ begin
   until Aux = '';
 end;
 
+procedure PrintHelp();
+
+begin
+    writeln('Comandos do jogo:');
+    writeln('inventory -> mostra inventário');
+    writeln('use OBJETO -> interagir com objeto da cena (abrir, usar, pressionar, ...)');
+    writeln('use ITEM with OBJETO -> usar item do inventário em objeto da cena');
+    writeln('get OBJETO -> obtém objeto para o inventário');
+    writeln('exit -> sai do jogo');
+end;
+
 procedure motorzera (game : Jogo);
 var
         kbImput : string; i, pos, controlPrintCena : integer;
@@ -202,16 +213,21 @@ begin
         invent.freePos := 0;
 
         printaCena(game.cenas[game.cena_atual]);
-        while kbImput <> 'quit' do
+        writeln('escreva [help] para instrucões');
+        while kbImput <> 'exit' do
         begin
                 if game.cena_atual <> controlPrintCena then
                 begin
                         printaCena(game.cenas[game.cena_atual]);
                         controlPrintCena := game.cena_atual;
+                        writeln('escreva [help] para instrucões');
                 end;
                 readln(kbImput);
 
-
+                if kbImput = 'help' then
+                begin
+                    PrintHelp();
+                end;
                 if kbImput = 'inventory' then
                 begin
                     printaInventario(invent, invent.freePos);
