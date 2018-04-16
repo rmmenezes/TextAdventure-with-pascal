@@ -63,17 +63,18 @@ begin
         criaCena := scene;
 end;
 
-function posNoInv (inv : Inventario; obj : Objeto) : integer;
+function posNoInv (inv : Inventario; obj : string) : integer;
 var
         i : integer;
 begin
-        for i := -1 to inv.freePos-1 do
+        for i := 0 to inv.freePos-1 do
         begin
-                if inv.itens[i+1].nome = obj.nome then
+                if inv.itens[i].nome = obj then
                 begin
-                        posNoInv := i+1;
+                        posNoInv := i;
                 end;
         end;
+        posNoInv := -1;
 end;
 
 
@@ -192,7 +193,7 @@ end;
 
 procedure motorzera (game : Jogo);
 var
-        kbImput : string; i : integer;
+        kbImput : string; i, pos : integer;
         invent : Inventario;
 begin
         //show initial screen
@@ -230,9 +231,9 @@ begin
                                                 begin
                                                         if game.cenas[game.cena_atual].itens[i].obtido = false then
                                                         begin
+                                                                game.cenas[game.cena_atual].itens[i].obtido := true;
                                                                 invent.itens[invent.freePos] := game.cenas[game.cena_atual].itens[i];
                                                                 invent.freePos := invent.FreePos + 1;
-                                                                game.cenas[game.cena_atual].itens[i].obtido := true;
                                                                 writeln(game.cenas[game.cena_atual].itens[i].result_posit);
                                                         end;
                                                         //adicionar else para result negativo
@@ -259,6 +260,15 @@ begin
 				begin
 					if (Split(kbImput, ' ').[0] = 'use') and  (Split(kbImput, ' ').[2] = 'with') then
 					begin
+                                                pos := posNoInv(invent, Split(kbImput, ' ').[1]);
+                                                if pos <> -1 then
+                                                begin
+                                                        invent.itens[pos] := ;
+                                                end;
+                                                //ver se esta no inventario
+                                                //tirar do inventario
+                                                //mudar o estado
+                                                //mudar a cena
 
 					end;
 				end;

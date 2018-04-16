@@ -63,13 +63,13 @@ begin
         criaCena := scene;
 end;
 
-function posNoInv (inv : Inventario; obj : Objeto) : integer;
+function posNoInv (inv : Inventario; obj : string) : integer;
 var
         i : integer;
 begin
         for i := 0 to inv.freePos-1 do
         begin
-                if inv.itens[i+1].nome = obj.nome then
+                if inv.itens[i].nome = obj then
                 begin
                         posNoInv := i;
                 end;
@@ -193,16 +193,22 @@ end;
 
 procedure motorzera (game : Jogo);
 var
-        kbImput : string; i : integer;
+        kbImput : string; i, pos, controlPrintCena : integer;
         invent : Inventario;
 begin
         //show initial screen
         game.cena_atual := 0;
+        controlPrintCena := 0;
         invent.freePos := 0;
 
         printaCena(game.cenas[game.cena_atual]);
         while kbImput <> 'quit' do
         begin
+                if game.cena_atual <> controlPrintCena then
+                begin
+                        printaCena(game.cenas[game.cena_atual]);
+                        controlPrintCena := game.cena_atual;
+                end;
                 readln(kbImput);
 
 
@@ -260,6 +266,20 @@ begin
 				begin
 					if (Split(kbImput, ' ').[0] = 'use') and  (Split(kbImput, ' ').[2] = 'with') then
 					begin
+                                                pos := posNoInv(invent, Split(kbImput, ' ').[1]);
+                                                if pos <> -1 then
+                                                begin
+                                                        if Split(kbImput, ' ').[3] = game.cenas[game.cena_atual].itens[i].nome then
+                                                        begin
+                                                                if game.cenas[game.cena_atual].itens[i].resolvido = false then
+                                                                begin
+                                                                        invent.itens[pos] := criaObjeto(0,0,'','','','','', -1); //tira do inventario
+                                                                        game.cenas[game.cena_atual].itens[i].resolvido := true;
+                                                                        writeln(game.cenas[game.cena_atual].itens[i].result_posit);
+                                                                        game.cena_atual := game.cena_atual + 1;
+                                                                end;
+                                                        end;
+                                                end;
                                                 //ver se esta no inventario
                                                 //tirar do inventario
                                                 //mudar o estado
