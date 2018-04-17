@@ -27,8 +27,8 @@ use bicicleta with rua
 
 1
 O Casebre
-A porta range muito, morcegos voam para o lado de fora, você poderia se assustar mas nao tem tempo pra isso. O lado interno do casebre nao eh tao feio quanto parecia la de fora. No comodo em que acabou de entrar ha pouca luz. Ha um INTERRUPTOR logo ao lado da PORTA que acabou de adentrar.
-2
+A porta range muito, morcegos voam para o lado de fora, você poderia se assustar mas nao tem tempo pra isso. O lado interno do casebre nao eh tao feio quanto parecia la de fora. No comodo em que acabou de entrar ha pouca luz. Ha um INTERRUPTOR logo ao lado da porta que acabou de adentrar.
+1
 0
 1
 interruptor
@@ -37,24 +37,24 @@ Voce acendeu a luz.
 Comando invalido para esse objeto. Tente outras interacoes.
 use interruptor
 1
-4
+5
 porta
 A porta ja se encontra fechada.
 A porta esta emperrada, agora eh impossivel voltar.
 Comando invalido para esse objeto. Tente outras interacoes.
-use porta
+check porta
 
 2
 Artefatos I
 Agora com o ambiente completamente iluminado, você consegue perceber alguns artefatos dispostos pelo comodo.  Logo ao lado do interruptor que acabou de acionar, ha um CALENDARIO velho pendurado apenas por uma das pontas na parede, no chao ha uma boa quantidade de MADEIRA que foram visivelmente arrancadas do piso, tambem eh possivel ver uma JANELA de tamanho medio na parede oposta, e na parede a direita ha uma porta, essa bem mais conservada que a anterior.
 3
 0
-4
+5
 calendario
-O calendario eh muito antigo, data 2031.
-O calendario agora está no seu inventario.
+O calendario eh bem antigo.
+O calendario eh muito antigo, data 1931.
 Comando invalido para esse objeto. Tente outras interacoes.
-get calendario
+check calendario
 1
 0
 madeira
@@ -67,4 +67,145 @@ get madeira
 janela
 A janela esta aberta. Perigoso, nao?
 Foi por pouco, mas voce fechou a janela com a madeira disponivel. Este comodo está selado dos perigos esteriores.
+Comando invalido para esse objeto. Tente outras interacoes.
 use madeira with janela
+
+3
+Artefatos II
+A opcao mais logica nesse momento eh a PORTA da parede que estava a sua direita(que agora esta a esquerda ja que voce se encontra de costas para a janela). Mas ao olhar mais uma vez para os lados percebe coisas que nao eram visiveis quando estava do outro lado do comodo: uma LANTERNA e uma FACA.
+3
+0
+0
+lanterna
+Funciona. pode ser muito util.
+A lanterna agora esta no seu inventario.
+Comando invalido para esse objeto. Tente outras interacoes.
+get lanterna
+1
+0
+faca
+Uma faca de cozinha, bastante afiada.
+A faca agora esta no seu inventario, use com cuidado.
+Comando invalido para esse objeto. Tente outras interacoes.
+get faca
+2
+1
+porta
+a porta esta destrancada
+Voce esta passando pela porta, e...
+Comando invalido para esse objeto. Tente outras interacoes.
+use porta
+
+4
+Nao esqueceu nada?
+Mesmo antes de terminar de entrar, voce sente que esse COMODO eh completamente diferente do anterior. Quando adentra, voce percebe que eh impossivel enchergar.
+1
+0
+2
+comodo
+O comodo esta escuro!
+Voce acendeu a lanterna...
+Comando invalido para esse objeto. Tente outras interacoes.
+use lanterna with comodo
+
+5
+A importancia das pequenas coisas
+Agora eh possivel ver, e como sua intuicao nao falha, desta vez o comodo eh medonho, ha alguns corpos ao redor, todos dispostos de barriga para baixo, nao eh possivel identificar muito bem seus rostos apenas com a luz da lanterna, o que eh evidente em todos eles, sao os olhos brancos como se as pupilas tivessem sido arrancadas. Voce ouve gritos agudos vindos do chao e percebe um pequeno ALCAPAO no canto do comodo, com uma pequena CHAVE logo ao lado. Tambem ve uma pequena JANELA de onde vem um grande clarao silencioso.
+3
+0
+0
+chave
+A chave aparenta ser de um cadeado.
+A chave agora esta em seu inventario.
+Comando invalido para esse objeto. Tente outras interacoes.
+get chave
+1
+2
+alcapao
+O alcapao esta com um pequeno cadeado fechado.
+Voce abriu o alcapao, prepare-se para a...
+Comando invalido para esse objeto. Tente outras interacoes.
+use chave with alcapao
+2
+4
+janela
+A janela eh pequena, mas eh possivel passar tranquilamente.
+A unica coisa grande era o clarao, e antes mesmo do seu medo tomar as mesmas proporçoes, voce morreu, sem nem ver o que o atingiu.
+Comando invalido para esse objeto. Tente outras interacoes.
+use janela
+
+6
+Surpresa
+Eh muito pequeno e escuro, voce ainda tem a lanterna entao consegue ver sem problemas. Um escadinha de madeira da acesso a um quadrado mais ou menos 1,5 por 1,5 com uma portinha em baixo da escada. Ao iluminar um dos lados, ainda descendo a escada, voce percebe uma CRIATURA meio humano, meio canina de costas pra voce e em cima de algo. Ela se vira e voce percebe no chao uma mulher, provelmante a dona dos gritos agudos que ouvira anteriormente, agora sem vida e sem olhos, como os outros corpos la em cima. A fera parte em sua direcao, voce precisa agir rapidamente.
+1
+0
+2
+criatura
+Ela parece ser constituida de carne e osso, diferente das outras criaturas noturnas, mais rapidas e letais que parecem serem inatingiveis.
+Ela te feriu na perna direita, mas seu golpe foi bem rapido e voce matou a criatura.
+Comando invalido para esse objeto. Tente outras interacoes.
+use faca with criatura
+
+7
+Quantas mais abrirei?
+Abaixo da escada, a PORTINHA, que exige um grande esforco para a passagem, parece ser a melhor escolha ja que voce quer evitar olhar novamente a MULHER no chao.
+2
+0
+1
+portinha
+a portinha nao esta trancada.
+Voce passou com mais facilidade do que previu pela portinha...
+Comando invalido para esse objeto. Tente outras interacoes.
+use portinha
+1
+5
+mulher
+a linda mulher morta aos seus pes eh Julia Mooi.
+Ela tinha pouco mais de 20 anos e morava a 2 quarteroes de voce.
+Comando invalido para esse objeto. Tente outras interacoes.
+check mulher
+
+8
+Derradeira decisao
+Eh uma garagem, uma garagem pequena, feita para confortar uma MOTO, com uma porta para a RUA bem ao lado. Sim, o menor casebre da vizinhanca tinha garagem. E o que voce percebe ao olhar por de tras da motocicleta eh interressante: ha uma PISTOLA no chao. Voce pode voltar pela PORTINHA e ficar na casa que ja foi toda explorada, ou se arriscar em uma saida muito inserta.
+4
+0
+0
+moto
+a moto eh definitivamente velha mas aparenta funcionar.
+A moto agora pode ser usada a partir do inventario.
+Comando invalido para esse objeto. Tente outras interacoes.
+get moto
+1
+0
+pistola
+A pistola esta funcionando e carregada.
+A pistola foi adicionada ao seu inventario.
+Comando invalido para esse objeto. Tente outras interacoes.
+get pistola
+2
+2
+rua
+ainda eh anoite, mas talvez voce consiga chegar em casa (desta vez?).
+Voce saiu do casebre com a moto e esta ganhando velocidade...
+Comando invalido para esse objeto. Tente outras interacoes.
+use moto with rua
+3
+4
+portinha
+o retorno ao casebre eh por aqui.
+Ao retornar a salinha com a mulher, voce percebe que tomou a pior decisao possivel, pois a fera, de alguma maneira inexplicavel tinha voltado a vida e sua faca, ainda se encontrava cravada em sua cabeca. Voce morreu e agora, nao tem olhos tambem.
+Comando invalido para esse objeto. Tente outras interacoes.
+use portinha
+
+9
+A manha vem antes do Sol
+Se galos ainda existissem, essa seria a hora em que comessariam a cantar, pois o fim da madrugada esta chegando. Ainda esta muito escuro e a moto nao tem farol, voce pilota muito rapido, mas tambem com muito cuidado, visando apenas uma coisa: Seu lar, a casa com a protecao que voce levou anos projetando, para se proteger das noites pitorescas de sangue, esta ali, logo a sua frente, a alguns quarteroes. Pode ter sido um delirio, mas voce tem certeza de que ouviu sua esposa gritar seu nome, como se nao tivesse parado de faze-lo por toda a noite. Pouco antes de virar a esquerda pela ultima vez, surgem os SERES inatingiveis de que pensara logo mais cedo, quando confrontou a fera. Neste momento, sua ultima chance eh a pistola, voce a pegou?
+1
+0
+2
+seres
+Como sao rapidos, avancam como se a gravidade aplicasse forca horizontalmente e destroem tudo o que tocam.
+Uma pontinha do sol surge, e os seres mudam de direçao imediatamente, avançam para o oeste com o triplo da velocidade que ultilizaram na sua caçada, voce esta a salvo.
+Comando invalido para esse objeto. Tente outras interacoes.
+use pistola with seres

@@ -1,4 +1,4 @@
-
+﻿
 {$mode objfpc}     // directive to be used for defining classes
 {$m+}		   // directive to be used for using constructor
 
@@ -63,7 +63,7 @@ begin
         criaCena := scene;
 end;
 
-function posNoInv (inv : Inventario; obj : string) : integer;
+function estaNoInv (inv : Inventario; obj : string) : boolean;
 var
         i : integer;
 begin
@@ -71,10 +71,23 @@ begin
         begin
                 if inv.itens[i].nome = obj then
                 begin
-                        posNoInv := i;
+                        estaNoInv := true;
                 end;
         end;
-        posNoInv := -1;
+        estaNoInv := false;
+end;
+
+procedure removeDoInv (inv: Inventario, obj : string);
+var
+	i : integer;
+begin
+	for i := 0 to inv.freePos-1 do
+	begin
+		if inv.itens[i].nome = obj then
+		begin
+			inv.itens[i].obtido := false;
+		end;
+	end;
 end;
 
 
@@ -84,10 +97,11 @@ var
 begin
         for i:= 0 to freePos-1 do
         begin
-                write(inv.itens[i].nome);
-                write(' ');
+		if inv.itens[i].obtido = true then
+                	write(inv.itens[i].nome);
+                	write(' ');
         end;
-
+	writeln();
 end;
 
 function criaJogo () : Jogo;
@@ -216,96 +230,95 @@ begin
         writeln('escreva [help] para instrucões');
         while kbImput <> 'exit' do
         begin
-                if game.cena_atual <> controlPrintCena then
-                begin
-                        printaCena(game.cenas[game.cena_atual]);
-                        controlPrintCena := game.cena_atual;
-                        writeln('escreva [help] para instrucões');
-                end;
-                readln(kbImput);
+            if game.cena_atual <> controlPrintCena then
+            begin
+                    printaCena(game.cenas[game.cena_atual]);
+                    controlPrintCena := game.cena_atual;
+                    writeln('escreva [help] para instrucões');
+            end;
+            readln(kbImput);
 
-                if kbImput = 'help' then
-                begin
+            if kbImput = 'help' then
+            begin
                     PrintHelp();
-                end;
-                if kbImput = 'inventory' then
-                begin
+            end;
+            if kbImput = 'inventory' then
+            begin
                     printaInventario(invent, invent.freePos);
-                end;
+            end;
 
 
-                for i:=0 to game.cenas[game.cena_atual].qtd_objetos-1 do
+            for i:=0 to game.cenas[game.cena_atual].qtd_objetos-1 do
+            begin
+            	if (Split(kbImput, ' ').[0] = 'check') and (Split(kbImput, ' ').[0] = game.cenas[game.cena_atual].itens[i].nome) then
                 begin
-                        if Split(kbImput, ' ').[1] = game.cenas[game.cena_atual].itens[i].nome then
+                	writeln(game.cenas[game.cena_atual].itens[i].descricao);
+                end
+		else if (game.cenas[game.cena_atual].itens[i].tipo = 0) and (kbImput = game.cenas[game.cena_atual].itens[i].comand_correct) then
+                begin
+                	if game.cenas[game.cena_atual].itens[i].obtido = false then
                         begin
-                                if Split(kbImput, ' ').[0] = 'check' then
-                                begin
-                                        writeln(game.cenas[game.cena_atual].itens[i].descricao);
-                                end;
-
-                                //tipos
-                                if game.cenas[game.cena_atual].itens[i].tipo = 0 then
-                                begin
-
-                                        if Split(kbImput, ' ').[0] = 'get' then
-                                        begin
-                                                if leftStr(game.cenas[game.cena_atual].itens[i].comand_correct, 3) = 'get' then
-                                                begin
-                                                        if game.cenas[game.cena_atual].itens[i].obtido = false then
-                                                        begin
-                                                                game.cenas[game.cena_atual].itens[i].obtido := true;
-                                                                invent.itens[invent.freePos] := game.cenas[game.cena_atual].itens[i];
-                                                                invent.freePos := invent.FreePos + 1;
-                                                                writeln(game.cenas[game.cena_atual].itens[i].result_posit);
-                                                        end;
-                                                        //adicionar else para result negativo
-                                                end;
-                                        end;
-				end;
-				if game.cenas[game.cena_atual].itens[i].tipo = 1 then
-				begin
-                                        if Split(kbImput, ' ').[0] = 'use' then
-                                        begin
-                                                if leftStr(game.cenas[game.cena_atual].itens[i].comand_correct, 3) = 'use' then
-                                                begin
-                                                        if game.cenas[game.cena_atual].itens[i].resolvido = false then
-                                                        begin
-								game.cenas[game.cena_atual].itens[i].resolvido := true;
-								writeln(game.cenas[game.cena_atual].itens[i].result_posit);
-								game.cena_atual := game.cena_atual + 1;
-                                			end; //if
-						end; //if
-					end; //if split
-                        	end; //if tipo = 1
-
-				if game.cenas[game.cena_atual].itens[i].tipo = 2 then
-				begin
-					if (Split(kbImput, ' ').[0] = 'use') and  (Split(kbImput, ' ').[2] = 'with') then
-					begin
-                                                pos := posNoInv(invent, Split(kbImput, ' ').[1]);
-                                                if pos <> -1 then
-                                                begin
-                                                        if Split(kbImput, ' ').[3] = game.cenas[game.cena_atual].itens[i].nome then
-                                                        begin
-                                                                if game.cenas[game.cena_atual].itens[i].resolvido = false then
-                                                                begin
-                                                                        invent.itens[pos] := criaObjeto(0,0,'','','','','', -1); //tira do inventario
-                                                                        game.cenas[game.cena_atual].itens[i].resolvido := true;
-                                                                        writeln(game.cenas[game.cena_atual].itens[i].result_posit);
-                                                                        game.cena_atual := game.cena_atual + 1;
-                                                                end;
-                                                        end;
-                                                end;
-                                                //ver se esta no inventario
-                                                //tirar do inventario
-                                                //mudar o estado
-                                                //mudar a cena
-
-					end;
-				end;
-
-                	end; // if split[1] = item
-        	end; // for
+                        	game.cenas[game.cena_atual].itens[i].obtido := true;
+                                invent.itens[invent.freePos] := game.cenas[game.cena_atual].itens[i];
+                                invent.freePos := invent.FreePos + 1;
+                                writeln(game.cenas[game.cena_atual].itens[i].result_posit);
+                   	end
+			else
+			begin
+				writeln(game.cenas[game.cena_atual].itens[i].result_negat);
+			end;
+            	end
+                else if (game.cenas[game.cena_atual].itens[i].tipo = 1) and (kbImput = game.cenas[game.cena_atual].itens[i].comand_correct) then
+		begin
+                	if game.cenas[game.cena_atual].itens[i].resolvido = false then
+                        begin
+				game.cenas[game.cena_atual].itens[i].resolvido := true;
+				writeln(game.cenas[game.cena_atual].itens[i].result_posit);
+				game.cena_atual := game.cena_atual + 1;
+                        end
+			else
+			begin
+				writeln(game.cenas[game.cena_atual].itens[i].result_negat);
+			end;
+		end
+		else if (game.cenas[game.cena_atual].itens[i].tipo = 2) and (kbImput = game.cenas[game.cena_atual].itens[i].comand_correct) then
+		begin
+			if (estaNoInv(invent, Split(kbImput, ' ').[1]) = true) and (game.cenas[game.cena_atual].itens[i].resolvido = false) then
+			begin
+				removeDoInv(invent, Split(kbImput, ' ').[1]);
+                                game.cenas[game.cena_atual].itens[i].resolvido := true;
+                                writeln(game.cenas[game.cena_atual].itens[i].result_posit);
+                                game.cena_atual := game.cena_atual + 1;
+                        end
+			else
+			begin
+				writeln(game.cenas[game.cena_atual].itens[i].result_negat);
+			end;
+                end
+                else if (game.cenas[game.cena_atual].itens[i].tipo = 3) and (kbImput = game.cenas[game.cena_atual].itens[i].comand_correct) then
+		begin
+                	if (estaNoInv(invent, Split(kbImput, ' ').[1]) = true) and (game.cenas[game.cena_atual].itens[i].resolvido = false) then
+			begin
+				removeDoInv(invent, Split(kbImput, ' ').[1]);
+                                game.cenas[game.cena_atual].itens[i].resolvido := true;
+                                writeln(game.cenas[game.cena_atual].itens[i].result_posit);
+				kbImput := 'exit';
+			end;
+		end
+		else if (game.cenas[game.cena_atual].itens[i].tipo = 4) and (kbImput = game.cenas[game.cena_atual].itens[i].comand_correct) then
+		begin
+			writeln(game.cenas[game.cena_atual].itens[i].result_posit);
+			kbImput := 'exit';
+		end
+		else if (game.cenas[game.cena_atual].itens[i].tipo = 5) and (kbImput = game.cenas[game.cena_atual].itens[i].comand_correct) then
+		begin
+			writeln(game.cenas[game.cena_atual].itens[i].result_posit);	
+		end
+		else
+		begin
+			writeln(game.cenas[game.cena_atual].itens[i].result_negat);
+		end;
+		
 	end; // while
 end; // procedure
 
