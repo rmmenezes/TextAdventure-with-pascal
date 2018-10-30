@@ -1,5 +1,5 @@
 # TextAdventure-with-pascal
-This was done in paschal language. To run the game you need to install the free pascal that will compile. You can access this site https://www.freepascal.org/download.var to download.
+This was done in pascal language. To run the game you need to install the free pascal that will compile. You can access this site https://www.freepascal.org/download.var to download.
 
        _____ ___ __  __   ____  _____   _   _  ___ ___ _____ _____   _   _  ___  
       |  ___|_ _|  \/  | |  _ \| ____| | \ | |/ _ \_ _|_   _| ____| | \ | |/ _ \ 
